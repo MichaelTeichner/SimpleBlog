@@ -3,9 +3,9 @@ class CommentsController < ApplicationController
 	before_action :authenticate_user!
 
 	def create
-		@comment = Comment.create(comment_params)
 		@post = Post.find(params[:post_id])
-
+		@comment = Comment.create(comment_params)
+		
 		@comment.user_id = current_user.id
 		@comment.post_id = @post.id
 
