@@ -1,15 +1,18 @@
 
-%h3= @post.title
+%h1= @post.title
 %p= @post.content
+%hr
 
 - @post.comments.each do |comment|
 	%h3= comment.content
 	%p
 		Submitted by
 		= comment.user.email
+	= link_to "Delete", [comment.post, comment], method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-default"
+	%hr
 
 = render 'comments/form'
 
-
-= link_to "Edit Post", edit_post_path(@post)
-= link_to "Delete Post", post_path(@post), method: :delete, data: {confirm: "Are you sure?"}
+%hr
+= link_to "Edit Post", edit_post_path(@post), class: "btn btn-default"
+= link_to "Delete Post", post_path(@post), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default"

@@ -7,19 +7,28 @@
 	= javascript_include_tag 'application', 'data-turbolinks-track' => true
 	= csrf_meta_tags
 
-%body.container
+%body.site-wrapper
 	
-	= link_to "Home" , root_path
-	
-	- if user_signed_in?
-		= link_to "New Post", new_post_path
-		= link_to "Sign Out", destroy_user_session_path , method: :delete
-	- else
-		= link_to "Sign In", new_user_session_path
-		= link_to "Sign Up", new_user_registration_path
+	.navbar.navbar-inverse.navbar
+		.container
+			.navbar-header
+				= link_to "All Posts" , root_path, class: "navbar-brand"
+		
+			.navbar-right
+				- if user_signed_in?
+					= link_to "New Post", new_post_path, class: "btn btn-success"
+					= link_to "Sign Out", destroy_user_session_path , method: :delete, class: "btn btn-default"
+				- else
+					= link_to "Sign In", new_user_session_path, class: "btn btn-default"
+					= link_to "Sign Up", new_user_registration_path, class: "btn btn-default"
+					
+	.container
+		%p.notice= notice
+		%p.alert= alert
+		= yield
 
-	%p.notice= notice
-	%p.alert= alert
-
-	= yield
+	.footer
+		%hr
+		.container
+			%h4 ©2015 Sa mai veniti pe la noi,Inc.
 
