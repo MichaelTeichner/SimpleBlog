@@ -5,6 +5,9 @@
 		by
 		= post.user.email
 	%p
+		= time_ago_in_words(post.created_at)
+		ago
+	%p
 		= post.comments.count
 		comments
 	%hr
